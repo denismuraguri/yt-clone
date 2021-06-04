@@ -3,7 +3,7 @@ import "./_sidebar.scss";
 
 export default function SideBar() {
     return (
-        <div>
+        <div className="border border-danger">
             sidebar
         </div>
     )
