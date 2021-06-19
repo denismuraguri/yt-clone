@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Header from './componenets/header/Header'
 import SideBar from './componenets/sidebar/SideBar'
 import HomeScreen from './screens/homescreen/HomeScreen'
 import LoginScreen from './screens/loginscreens/LoginScreen'
-import {BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
+import {
+    //BrowserRouter as Router,
+    Redirect, Route, Switch, useHistory } from "react-router-dom"
 
 
 import "./_app.scss";
+import { useSelector } from 'react-redux'
 
 const Layout = ({children}) =>{
     const [sidebar, toogleSidebar] = useState(false)
@@ -33,9 +36,19 @@ const Layout = ({children}) =>{
 }
 
 export default function App() {
+
+     const {accessToken, loading} = useSelector(state=> state.auth)
+    //const {accessToken, loading} = useSelector(state => state.auth);
     
+    const history = useHistory()
+
+    useEffect(() => {
+        if(!loading && !accessToken){
+            history.push('/auth')       
+        }
+    }, [accessToken, loading, history])
     return (
-        <Router>
+        //<Router>
             <Switch>
                 <Route exact path="/">
                     <Layout>
@@ -55,38 +68,9 @@ export default function App() {
                     <Redirect to="/" />
                 </Route>
             </Switch>
-        </Router>
+        //</Router>
 
         //<LoginScreen />
     )
 }
  
-
-/*import React, { useState } from 'react'
-import { Container } from 'react-bootstrap'
-import Header from './componenets/header/Header'
-import SideBar from './componenets/sidebar/SideBar'
-import HomeScreen from './screens/homescreen/HomeScreen'
-
-import "./_app.scss";
-
-export default function App() {
-    const [sidebar, toogleSidebar] = useState(false)
-
-    const handleToggleSidebar = ()=> toogleSidebar(value=>!value)
-    return (
-        <div>
-            <Header handleToggleSidebar={handleToggleSidebar} />
-            <div className="app__container border border-info">
-                <SideBar 
-                sidebar={sidebar}
-                handleToggleSidebar={handleToggleSidebar}
-                 />
-                <Container fluid className="app__main border border-warning">
-                    <HomeScreen />
-                </Container>
-            </div>
-        </div>
-    )
-}
-*/

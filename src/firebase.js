@@ -1,12 +1,15 @@
-import firebase from "firebase/app"
+import firebase from 'firebase/app'
 
+import 'firebase/auth'
 const firebaseConfig = {
-    apiKey: "AIzaSyBgpLRHfGbhdIzkyVZ6ieo4QfK2LFGVf0I",
-    authDomain: "yt-clone-proj.firebaseapp.com",
-    projectId: "yt-clone-proj",
-    storageBucket: "yt-clone-proj.appspot.com",
-    messagingSenderId: "1078865314633",
-    appId: "1:1078865314633:web:fee2b8b7b18ccf57211098"
+    apiKey: "AIzaSyBSpm8Wejj2eiBmy4RuTb_wDsUaLyFgJ6U",
+    authDomain: "yt-clone-try.firebaseapp.com",
+    projectId: "yt-clone-try",
+    storageBucket: "yt-clone-try.appspot.com",
+    messagingSenderId: "374725628352",
+    appId: "1:374725628352:web:2c2c1a882fc2ac56713825"
 };
 
 firebase.initializeApp(firebaseConfig)
+
+export default firebase.auth()

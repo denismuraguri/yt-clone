@@ -9,10 +9,12 @@ export default function HomeScreen() {
             <CategoriesBar />
             <Row>
                 {
-                    [...new Array(20)].map(() => 
+                    [...new Array(20)].map((video) => 
                         <Col lg={3} md={4}>
+                             
                             <Video />
-                        </Col>)
+                        </Col>
+                    )
                 }
             </Row>
 
